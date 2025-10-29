@@ -1,5 +1,4 @@
 import Movie from "../../../../model/movieModel.js";
-import { paginateSequelize } from "../../../../model/plugins/paginatePlugin.js";
 import { Op } from "sequelize";
 export const createMovie = async (req, res) => {
   try {
@@ -31,30 +30,7 @@ export const createMovie = async (req, res) => {
 };
 
 
-// export const getAllMovies = async (req, res) => {
-//   try {
-//      const { type } = req.query; 
-//     let where = {};
 
-//     if (type) {
-//       where.type = type; 
-//     }
-//     const data = await paginateSequelize(Movie, req.query, [
-//       "title",
-//       "director",
-//       "type",
-//       "location",
-//       where,
-//     ]);
-
-//     res.status(200).json({
-//       data: data.rows,
-//       pagination: data.pagination,
-//     });
-//   } catch (err) {
-//     res.status(500).json({ message: "Server error", error: err.message });
-//   }
-// };
 export const getAllMovies = async (req, res) => {
   try {
     const {

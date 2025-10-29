@@ -1,7 +1,6 @@
 **Backend:**  
 - Node.js  
 - Express.js  
-- MongoDB (Mongoose)  
 - MySQL (Sequelize) 
 
 
@@ -9,17 +8,17 @@
 # start server 
 npm run dev
 
-# Initialize Git in your project (if not already done)
+# Initialize Git in your project
 git init  
 
 # Add your GitHub repo as remote (replace with your repo link)
-git remote add origin https://github.com/At-Drive/server.git 
+git remote add origin https://github.com/mohammad-danish-ansari/server_logical.git 
 
 # Add all files
 git add .  
 
 # Commit changes
-git commit -m "Angular + Node CRUD app"  
+git commit -m "React + Node CRUD app"  
 
 # Push to GitHub master branch
 git pull origin master 
@@ -35,8 +34,7 @@ npm run dev
 - `cors` → Cross-Origin Resource Sharing  
 - `dotenv` → Environment variable management  
 - `express-jwt` & `jsonwebtoken` → JWT authentication  
-- `mongoose` → MongoDB ODM  
-- `mysql2` & `sequelize` → MySQL connection & ORM  
+- `mysql2` & `sequelize` → MySQL connection 
 - `morgan` → HTTP request logger  
 - `nodemon` → Development server auto-reload  
 
@@ -46,16 +44,15 @@ npm run dev
 
 ## backend
   config
-    dbConnect.js       # MongoDB connection
     dbSQL.js           # MySQL connection
 
   controllers
     v1
-      admin
-       <!--  Admin-related controllers -->
       website
-                order
-                   orderController.js
+       <!--  website-related controllers -->
+      admin
+                movie
+                   movieController.js
                    routes.js
                 product
                    productController.js
@@ -64,12 +61,11 @@ npm run dev
                    userController.js
                    routes.js
              index.js
-                 <!-- all order,product.user routes inside the index.js       -->
+                 <!-- all movie,.user routes inside the index.js       -->
       routes.js
            <!-- web and admin routes inside the  routes.js-->
   models
-    orderModel.js
-    productModel.js
+    movieModel.js
     userModel.js
   routes
     v1 

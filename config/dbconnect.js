@@ -5,7 +5,7 @@ const connectDb = async (DATABASE_URL) => {
     console.log(DATABASE_URL);
 
     const DB_OPTION = {
-      dbName: "atDrive",
+      dbName: "logical",
     };
     await mongoose.connect(DATABASE_URL, DB_OPTION);
     console.log(`MongoDB database connected successfully!`);
