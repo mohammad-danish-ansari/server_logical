@@ -2,12 +2,9 @@ import Movie from "../../../../model/movieModel.js";
 import { Op } from "sequelize";
 export const createMovie = async (req, res) => {
   try {
-    const { title, type, director, budget, location, duration, yearTime } =
-      req.body;
+    const { title, type, director, budget, location, duration, yearTime, userId } = req.body;
 
-    // Check if user exists
-    // const user = await User.findByPk(userId);
-    // if (!user) return res.status(404).json({ message: "User not found" });
+    if (!userId) return res.status(400).json({ message: "User id is required" });
 
     const movie = await Movie.create({
       title,
@@ -17,19 +14,15 @@ export const createMovie = async (req, res) => {
       location,
       duration,
       yearTime,
-      // userId,
+      userId,
     });
 
-    res
-      .status(201)
-      .json({ message: "Movie created successfully", data: movie });
+    res.status(201).json({ message: "Movie created successfully", data: movie });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error", error: err.message });
   }
 };
-
-
 
 export const getAllMovies = async (req, res) => {
   try {
@@ -40,11 +33,13 @@ export const getAllMovies = async (req, res) => {
       direction = "DESC",
       search = null,
       type = null,
+      userId = null,
     } = req.query;
 
-    const offset = (page - 1) * pageSize || 0;
+    const offset = (page - 1) * pageSize;
 
     const where = {
+      ...(userId && { userId }),
       ...(search && {
         [Op.or]: [
           { title: { [Op.like]: `%${search}%` } },
@@ -53,17 +48,15 @@ export const getAllMovies = async (req, res) => {
           { type: { [Op.like]: `%${search}%` } },
         ],
       }),
-      ...(type && { type }), 
+      ...(type && { type }),
     };
 
-    const query = {
+    const result = await Movie.findAndCountAll({
       where,
       order: [[column, direction]],
       offset: +offset,
       limit: +pageSize,
-    };
-
-    const result = await Movie.findAndCountAll(query);
+    });
 
     const totalPages = Math.ceil(result.count / pageSize);
 
