@@ -11,7 +11,7 @@ npm run dev
 # Initialize Git in your project
 git init  
 
-# Add your GitHub repo as remote (replace with your repo link)
+# Add your GitHub repo as remote
 git remote add origin https://github.com/mohammad-danish-ansari/server_logical.git 
 
 # Add all files
@@ -51,14 +51,14 @@ npm run dev
       website
        <!--  website-related controllers -->
       admin
-                movie
-                   movieController.js
+                movies
+                   movies.js
                    routes.js
-                product
-                   productController.js
+                movies
+                   movies.js
                    routes.js
                 user
-                   userController.js
+                   user.js
                    routes.js
              index.js
                  <!-- all movie,.user routes inside the index.js       -->
