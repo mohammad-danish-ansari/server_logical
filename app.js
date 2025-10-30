@@ -10,12 +10,8 @@ app.use(express.json());
 app.use(cors());
 
 app.use(logger("dev"));
-app.use("/", apiRouter);
-app.get("/", (req, res) => {
-  res.status(200).json({
-    message: "Server Logical API is running 🚀",
-  });
-});
+app.use("", apiRouter);
+
 // connect port
 const port = process.env.PORT;
 
